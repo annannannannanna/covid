@@ -2,6 +2,8 @@
 
 The data is up-to-date as of September 18th, 2020.
 
+The data is stored in the **"covid.json"** file, under the **"first"** tag .
+
 At the top level, there is a dictionary that contains a country code as the key and country data as the value. The full name of the country can be found in the "location" field. In addition to the "location", there are several other fields that contain general statistics about the country:
 
 - "population"
