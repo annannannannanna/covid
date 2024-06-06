@@ -199,3 +199,14 @@ def sigma(country_code, value_name):
         values.append(entry.get(value_name, 0))
     return calc_sigma(values)
 ```
+
+In the previous problem, we calculated the standard deviation. However, it is difficult to compare this indicator across different countries as the average values of indicators vary significantly between countries.
+
+To address this, let's attempt to normalize the COEX ratio by adjusting it to the expected value. The formulas for calculating the COE and average are provided in the previous problem. These calculations will help us determine whether the process is stable and the accounting system is ideal. Alternatively, the data may be artificially constrained within a specific range. To determine this, we will calculate the normalized COE for each indicator. 
+
+The sigma_norm() function will take two parameters: country_code and value_name. 
+
+The function should return a single value - the standard deviation divided by the expected value of the specified indicator in August.
+
+Sample input: sigma(‘RUS’, ‘new_cases’)
+Sample output: 0.05748491556302192
