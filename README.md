@@ -34,7 +34,7 @@ Let's write a function called **max_value** that takes in a **value name** and r
  - sample input: max_value('median_age')
  - sample output: "Japan"
 
-covid_1.py
+[covid_1.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_1.py "covid_1.py")
 
 Now let's take a look at the daily indicators. Let's find the day in August when the total value of the "value_name" indicator was the highest for all countries.
 
@@ -45,7 +45,7 @@ The function "day_with_max_value" will take in a parameter "value_name" and retu
 Sample input: "day_with_max_value('new_cases')"
 Sample output: "2020-08-13"
 
-covid_2.py
+[covid_2.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_2.py "covid_2.py")
 
 Now, let's calculate the correlation between the number of tests and the number of positive cases. We can use the following formula to do this:
 
@@ -80,7 +80,7 @@ Implement the "float_with_precision(country_code)" function, which calculates th
 Sample input: float_with_precision("IND")
 Sample output: 0.5935340285658485
 
-covid_3.py
+[covid_3.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_3.py "covid_3.py")
 
 Now we want to determine the stability of the value_name parameter (for example, the number of reported cases). To do this, we can calculate the standard deviation - the square root of the variance. You have already encountered this indicator when completing tasks based on random variables. Recall that the mean and COE can be calculated as follows:
 
@@ -104,7 +104,7 @@ Implement the "sigma(country_code" function.
 Sample input: sigma('GBR', 'new_cases')
 Sample output: 235.76391655560022
 
-covid_4.py
+[covid_4.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_4.py "covid_4.py")
 
 In the previous problem, we calculated the standard deviation. However, it is difficult to compare this indicator across different countries as the average values of indicators vary significantly between countries.
 
@@ -117,4 +117,4 @@ The function should return a single value - the standard deviation divided by th
 Sample input: sigma(‘RUS’, ‘new_cases’)
 Sample output: 0.05748491556302192
 
-covid_5.py
+[covid_5.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_5.py "covid_5.py")
