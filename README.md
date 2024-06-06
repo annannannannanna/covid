@@ -152,3 +152,50 @@ def float_with_precision(code):
         new_tests.append(entry.get("new_tests", 0))
     return corr(new_cases, new_tests)
 ```
+
+Now we want to determine the stability of the value_name parameter (for example, the number of reported cases). To do this, we can calculate the standard deviation - the square root of the variance. You have already encountered this indicator when completing tasks based on random variables. Recall that the mean and COE can be calculated as follows:
+
+```python
+def calc_mean_sigma(data):
+    sx, sx2, n = 0.0, 0.0, 0
+    for x in data:
+        sx += x
+        sx2 += x*x
+        n += 1
+    return (sx / n, math.sqrt(max(sx2 / n - sx / n * sx / n, 0)))
+```
+
+This parameter shows how far the indicator is from its average value.
+In the previous task, this could give you some insights into the processes that are happening. If the spread is large, it may indicate a rapidly evolving process. Another possibility is that some countries do not publish statistics on weekends, while at the beginning of the week there are jumps. By looking at how the COEX system changes over time, you can formulate hypotheses and try to verify them. 
+
+Your sigma function should take two parameters - "country_code" and "value_name" - and return one number - the standard deviation of the "value_name" for August.
+
+Implement the "sigma(country_code" function.
+
+Sample input: sigma('GBR', 'new_cases')
+Sample output: 235.76391655560022
+
+```python
+import json, math
+def calc_sigma(data):
+    sx, sx2, n = 0.0, 0.0, 0
+    for x in data:
+        sx += x
+        sx2 += x*x
+        n += 1
+    return math.sqrt(max(sx2 / n - sx / n * sx / n, 0))
+
+
+def sigma(country_code, value_name):
+    data = json.loads(open("data/covid.json", "rt").read())
+    country_data = data[country_code]
+    values = []
+    for entry in country_data["data"]:
+        if "date" not in entry:
+            continue
+        date = entry["date"]
+        if date[:7] != "2020-08":
+            continue
+        values.append(entry.get(value_name, 0))
+    return calc_sigma(values)
+```
