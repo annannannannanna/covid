@@ -110,3 +110,13 @@ This coefficient indicates the degree of interdependence between two variables.
 If, as one variable increases, the other also increases, then the correlation coefficient will be closer to 1.
 If one variable increases while the other decreases, the correlation coefficient will be closer to -1.
 If there is no relationship between the two variables, the correlation coefficient will approach 0.
+
+If you calculate this coefficient for tests and detected cases, you can gain some insights into the processes occurring. For instance, if the correlation is negative, it might indicate that during the decline of the epidemic, the country increased the number of tests significantly. If the correlation is strong, then perhaps there were not enough tests initially, and with increased testing, detectability began to rise.
+To draw confident conclusions, it is important to look at these values over time and take into account all relevant factors. The correlation value itself does not provide a definitive answer, but it can provide some clues. 
+
+Write a function called float_with_precision that takes a country code as an argument and returns the value of the correlation coefficient between the number of tests conducted and the number of cases detected in August. If any of the values are missing for a particular day, assign it a value of 0.
+
+Implement the "float_with_precision(country_code)" function, which calculates the correlation between the number of tests and the number of cases found in August for a given country code.
+
+Sample input: float_with_precision("IND")
+Sample output: 0.5935340285658485
