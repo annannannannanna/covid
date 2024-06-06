@@ -34,28 +34,7 @@ Let's write a function called **max_value** that takes in a **value name** and r
  - sample input: max_value('median_age')
  - sample output: "Japan"
 
-```python
-import json
-
-def max_value(value_name):
-    data = json.loads(open("/Users/imac/Documents/covid/covid.json", "rt").read())
-    result = []
-    
-    for code, country_data in data.items():
-        country = country_data["location"]
-        
-        if value_name not in country_data:
-            continue 
-        
-        value = country_data[value_name]
-        result.append((country, value))
-    result = sorted(result, key = lambda x: -x[1])
-    
-    return result[0][0]
-
-value_name = 'median_age'
-print(max_value(value_name))
-```
+covid_1.py
 
 Now let's take a look at the daily indicators. Let's find the day in August when the total value of the "value_name" indicator was the highest for all countries.
 
@@ -66,27 +45,7 @@ The function "day_with_max_value" will take in a parameter "value_name" and retu
 Sample input: "day_with_max_value('new_cases')"
 Sample output: "2020-08-13"
 
-```python
-import json
-def day_with_max_value(value_name):
-    data = json.loads(open("data/covid.json", "rt").read())
-    result = [0.0 for _ in range(31)]
-    for code, country_data in data.items():
-        country = country_data["location"]
-        for entry in country_data["data"]:
-            if "date" not in entry:
-                continue
-            date = entry["date"]
-            if date[:7] != "2020-08":
-                continue
-            day = int(date[8:]) - 1
-            result[day] += entry.get(value_name, 0.0)
-    max_day = 0
-    for i in range(31):
-        if result[i] > result[max_day]:
-            max_day = i
-    return "2020-08-%02d" % (max_day + 1)
-```
+covid_2.py
 
 Now, let's calculate the correlation between the number of tests and the number of positive cases. We can use the following formula to do this:
 
@@ -121,37 +80,7 @@ Implement the "float_with_precision(country_code)" function, which calculates th
 Sample input: float_with_precision("IND")
 Sample output: 0.5935340285658485
 
-```python
-import json, math
-
-def corr(data_x, data_y):
-    sx, sy, sxy, sx2, sy2, n = 0.0, 0.0, 0.0, 0.0, 0.0, 0
-    for x, y in zip(data_x, data_y):
-        sx += x
-        sx2 += x*x
-        sy += y
-        sy2 += y*y
-        sxy += x*y
-        n += 1
-    dd = math.sqrt((sx2 / n - (sx / n * sx / n)) * (sy2 / n - (sy / n * sy / n)))
-    if abs(dd) < 1e-5:
-        return None
-    return (sxy / n - sx / n * sy / n) / dd
-
-def float_with_precision(code):
-    data = json.loads(open("data/covid.json", "rt").read())
-    country_data = data[code]
-    new_cases, new_tests = [], []
-    for entry in country_data["data"]:
-        if "date" not in entry:
-            continue
-        date = entry["date"]
-        if date[:7] != "2020-08":
-            continue
-        new_cases.append(entry.get("new_cases", 0))
-        new_tests.append(entry.get("new_tests", 0))
-    return corr(new_cases, new_tests)
-```
+covid_3.py
 
 Now we want to determine the stability of the value_name parameter (for example, the number of reported cases). To do this, we can calculate the standard deviation - the square root of the variance. You have already encountered this indicator when completing tasks based on random variables. Recall that the mean and COE can be calculated as follows:
 
@@ -175,30 +104,7 @@ Implement the "sigma(country_code" function.
 Sample input: sigma('GBR', 'new_cases')
 Sample output: 235.76391655560022
 
-```python
-import json, math
-def calc_sigma(data):
-    sx, sx2, n = 0.0, 0.0, 0
-    for x in data:
-        sx += x
-        sx2 += x*x
-        n += 1
-    return math.sqrt(max(sx2 / n - sx / n * sx / n, 0))
-
-
-def sigma(country_code, value_name):
-    data = json.loads(open("data/covid.json", "rt").read())
-    country_data = data[country_code]
-    values = []
-    for entry in country_data["data"]:
-        if "date" not in entry:
-            continue
-        date = entry["date"]
-        if date[:7] != "2020-08":
-            continue
-        values.append(entry.get(value_name, 0))
-    return calc_sigma(values)
-```
+covid_4.py
 
 In the previous problem, we calculated the standard deviation. However, it is difficult to compare this indicator across different countries as the average values of indicators vary significantly between countries.
 
@@ -210,3 +116,5 @@ The function should return a single value - the standard deviation divided by th
 
 Sample input: sigma(‘RUS’, ‘new_cases’)
 Sample output: 0.05748491556302192
+
+covid_5.py
