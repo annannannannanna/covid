@@ -87,3 +87,26 @@ def day_with_max_value(value_name):
             max_day = i
     return "2020-08-%02d" % (max_day + 1)
 ```
+
+Now, let's calculate the correlation between the number of tests and the number of positive cases. We can use the following formula to do this:
+
+```python
+def corr(data_x, data_y):
+    sx, sy, sxy, sx2, sy2, n = 0.0, 0.0, 0.0, 0.0, 0.0, 0
+    for x, y in zip(data_x, data_y):
+        sx += x
+        sx2 += x*x
+        sy += y
+        sy2 += y*y
+        sxy += x*y
+        n += 1
+    dd = math.sqrt((sx2 / n - (sx / n * sx / n)) * (sy2 / n - (sy / n * sy / n)))
+    if abs(dd)  < 1e-5:
+        return None
+    return (sxy / n - sx / n * sy / n) / dd
+```
+
+This coefficient indicates the degree of interdependence between two variables.
+If, as one variable increases, the other also increases, then the correlation coefficient will be closer to 1.
+If one variable increases while the other decreases, the correlation coefficient will be closer to -1.
+If there is no relationship between the two variables, the correlation coefficient will approach 0.
