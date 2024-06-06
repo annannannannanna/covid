@@ -57,3 +57,11 @@ value_name = 'median_age'
 print(max_value(value_name))
 ```
 
+Now let's take a look at the daily indicators. Let's find the day in August when the total value of the "value_name" indicator was the highest for all countries.
+
+We will write a function called "day_with_max_value" that will return the string indicating this date.
+
+The function "day_with_max_value" will take in a parameter "value_name" and return the date (in the format "2020-08-dd") of the day when the total "value_name" was the maximum for all countries in August.
+
+Sample input: "day_with_max_value('new_cases')"
+Sample output: "2020-08-13"
