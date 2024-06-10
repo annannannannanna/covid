@@ -33,7 +33,7 @@ Let's write a function called **max_value** that takes in a **value name** and r
  - sample input: max_value('median_age')
  - sample output: "Japan"
 
-[covid_1.py](http://https://github.com/annannannannanna/covid/blob/68d04f783a9a056b0421dd23491dd843b2711fb4/covid_1.py "covid_1.py")
+[covid_1.py](https://github.com/annannannannanna/covid/blob/main/covid_1.py)
 
 Now let's take a look at the daily indicators. Let's find the day in August when the total value of the "value_name" indicator was the highest for all countries.
 
